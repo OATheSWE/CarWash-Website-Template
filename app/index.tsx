@@ -1,19 +1,30 @@
-import { Box, Image, Text } from "@mantine/core";
-import React from "react";
-///@ts-ignore
-import classes from './index.module.css';
-import { ImageCollection } from "@/assets";
-import { styles } from "@/src/data";
-
+import {
+  Blogs,
+  GetBack,
+  Header,
+  Section3,
+  Services,
+  WhyUs,
+} from "@/src/components";
+import { useSpring, animated } from "@react-spring/web";
 
 const home = () => {
+  // Slide-in animation
+  const slideInStyles = useSpring({
+    from: { transform: "translateX(100%)" },
+    to: { transform: "translateX(0%)" },
+    config: { tension: 220, friction: 30 },
+  });
+
   return (
-      <Box className={`flex items-center justify-center bg-black flex-col h-full w-full overflow-x-hidden ${styles.body}`}>
-        <Text className={`font-semibold text-[20px] ${classes.style}`} ta={`center`} >
-          Open up index.tsx in your app folder to start working on your website, web app or app!
-        </Text>
-        <Image src={ImageCollection.logo} className={`object-cover w-[30%] mt-8`} />
-      </Box>
+    <animated.div style={slideInStyles} className="overflow-hidden">
+      <Header />
+      <GetBack />
+      <WhyUs />
+      <Section3 />
+      <Services />
+      <Blogs />
+    </animated.div>
   );
 };
 
