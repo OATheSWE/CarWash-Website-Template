@@ -17,7 +17,6 @@ const service6 = Asset.fromModule(require('./service6.jpg')).uri;
 const service7 = Asset.fromModule(require('./service7.jpg')).uri;
 const service8 = Asset.fromModule(require('./service8.jpg')).uri;
 const service9 = Asset.fromModule(require('./service9.jpg')).uri;
-const blog1 = Asset.fromModule(require('./blog1.png')).uri;
 const aboutHeader = Asset.fromModule(require('./about-header.png')).uri;
 const serviceHeader = Asset.fromModule(require('./servicesHeader.jpg')).uri;
 const pricingHeader = Asset.fromModule(require('./pricingHeader.jpg')).uri;
@@ -26,6 +25,7 @@ const about1 = Asset.fromModule(require('./about1.jpg')).uri;
 const about2 = Asset.fromModule(require('./about2.webp')).uri;
 const about3 = Asset.fromModule(require('./about3.webp')).uri;
 const aboutVideo = Asset.fromModule(require('./aboutpage.mp4')).uri;
+const blog1 = Asset.fromModule(require('./blog1.jpeg')).uri;
 
 
 const ImageCollection = {

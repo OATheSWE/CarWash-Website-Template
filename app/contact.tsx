@@ -11,7 +11,7 @@ const contact = () => {
   });
 
   return (
-    <animated.div style={slideInStyles} className="overflow-hidden">
+    <animated.div style={slideInStyles} className="overflow-hidden pb-[100px]">
       <Header2
         img={ImageCollection.contactHeader}
         topText={`CONTACT`}

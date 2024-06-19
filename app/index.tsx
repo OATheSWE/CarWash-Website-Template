@@ -17,7 +17,7 @@ const home = () => {
   });
 
   return (
-    <animated.div style={slideInStyles} className="overflow-hidden">
+    <animated.div style={slideInStyles} className="overflow-hidden pb-[100px]">
       <Header />
       <GetBack />
       <WhyUs />

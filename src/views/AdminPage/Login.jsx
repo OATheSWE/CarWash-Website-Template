@@ -28,7 +28,7 @@ const Login = () => {
         <Group justify="center">
           <input
             type="submit"
-            value="Login"
+            value="Submit"
             className="bg-primary border-2 border-primary rounded-xl hover:bg-transparent hover:text-white mt-[40px] px-4 py-2.5 text-[16px] transition duration-300 text-white cursor-pointer"
           />
         </Group>

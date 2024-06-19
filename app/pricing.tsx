@@ -14,7 +14,7 @@ const spring = () => {
   });
 
   return (
-    <animated.div style={slideInStyles} className="overflow-hidden">
+    <animated.div style={slideInStyles} className="overflow-hidden pb-[100px]">
       <Header2
         img={ImageCollection.pricingHeader}
         topText={`pricing`}
