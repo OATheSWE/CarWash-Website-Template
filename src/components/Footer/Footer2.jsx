@@ -27,7 +27,7 @@ export default function Footer2() {
   ));
 
   return (
-    <div className={`${styles.body} ${classes.footer} bg-[#141c26] fixed z-[9999] w-full`}>
+    <div className={`${styles.body} ${classes.footer} bg-[#141c26] z-[999999] w-full`}>
       <div className={` ${classes.inner}`}>
         <Group h="100%" className="flex items-center">
           <Link href="/">

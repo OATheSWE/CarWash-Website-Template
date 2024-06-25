@@ -2,10 +2,14 @@ import React, { useState, useEffect } from "react";
 import { Divider, MantineProvider } from "@mantine/core";
 import "@mantine/core/styles.css";
 import "@mantine/dates/styles.css";
+import '@mantine/notifications/styles.css';
 import "../global.css";
 import { Slot } from "expo-router";
 import { Footer, InstagramIcon, NavBar } from "../src/components";
 import { Splash } from "../src/views";
+import { ModalsProvider } from "@mantine/modals";
+import { Notifications } from '@mantine/notifications';
+
 
 const App = () => {
   const [showSplash, setShowSplash] = useState(true);
@@ -22,16 +26,19 @@ const App = () => {
 
   return (
     <MantineProvider>
-      {showSplash ? (
-        <Splash />
-      ) : (
-        <div>
-          <NavBar />
-          <Slot />
-          <InstagramIcon />
-          <Footer />
-        </div>
-      )}
+      <ModalsProvider>
+        <Notifications />
+        {showSplash ? (
+          <Splash />
+        ) : (
+          <div>
+            <NavBar />
+            <Slot />
+            <InstagramIcon />
+            <Footer />
+          </div>
+        )}
+      </ModalsProvider>
     </MantineProvider>
   );
 };

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useSpring, animated } from "@react-spring/web";
 import { prices, styles } from "../../data";
 import {
@@ -15,12 +16,23 @@ import ForM from "./Form";
 import { ImageCollection } from "@/assets";
 
 const BookPage = () => {
+  const [selectedWeight, setSelectedWeight] = useState("");
+  const [selectedPlan, setSelectedPlan] = useState("");
+
   // Slide-in animation
   const slideInStyles = useSpring({
     from: { transform: "translateY(100%)" },
     to: { transform: "translateY(0%)" },
     config: { tension: 220, friction: 30 },
   });
+
+  const handleSelectChange = (value: any) => {
+    setSelectedWeight(value);
+  };
+
+  const handlePlanClick = (planName: any) => {
+    setSelectedPlan(planName);
+  };
 
   const pricingPlans = prices.map((plan, index) => (
     <div key={index} className={`max-md:mx-auto`}>
@@ -42,8 +54,8 @@ const BookPage = () => {
         </List>
         <Btn
           text="Select Plan"
-          style={`rounded-full font-semibold border-[1.5px] border-primary h-[50px] bg-transparent justify-center text-[16px] w-full text-primary mt-6 hover:bg-primary hover:text-white`}
-          click={() => {}}
+          style={`rounded-full font-semibold border-[1.5px] border-primary h-[50px] ${selectedPlan === plan.packageName ? 'bg-primary text-white' : 'bg-transparent text-primary'} justify-center text-[16px] w-full mt-6 hover:bg-primary hover:text-white`}
+          click={() => handlePlanClick(plan.packageName)}
         />
       </Card>
     </div>
@@ -98,6 +110,8 @@ const BookPage = () => {
                 "1751 - 2499 Kg",
                 "2500 - 2999 Kg",
               ]}
+              value={selectedWeight}
+              onChange={handleSelectChange}
               mt={`lg`}
               comboboxProps={{
                 transitionProps: { transition: "pop", duration: 200 },
@@ -140,7 +154,7 @@ const BookPage = () => {
                 </Text>
               </div>
             </div>
-            <ForM />
+            <ForM selectedWeight={selectedWeight} selectedPlan={selectedPlan} />
           </div>
         </section>
       </animated.div>

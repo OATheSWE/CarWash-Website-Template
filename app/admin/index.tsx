@@ -3,6 +3,9 @@ import { Admin, Login } from "@/src/views";
 import { useSpring, animated } from "@react-spring/web";
 
 const admin = () => {
+  // Check if "aya" exists in localStorage
+  const isLoggedIn = localStorage.getItem("aya");
+
   // Slide-in animation
   const slideInStyles = useSpring({
     from: { transform: "translateY(100%)" },
@@ -12,10 +15,7 @@ const admin = () => {
 
   return (
     <animated.div style={slideInStyles}>
-      {/* <Aside />
-      <Admin />
-      <Footer2 /> */}
-      <Login />
+      {isLoggedIn ? <Admin /> : <Login />}
     </animated.div>
   );
 };

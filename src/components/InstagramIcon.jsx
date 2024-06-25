@@ -45,7 +45,7 @@ const InstagramIcon = () => {
             radius="xl"
             onClick={() => {
               window.location.href =
-                "https://www.instagram.com/mediaincre.co?igsh=MTIycmE2NWd3MjE1Zw%3D%3D&utm_source=qr";
+                "https://www.instagram.com/";
             }}
           >
             <IconImports.Instagram size={25} color={`white`} />

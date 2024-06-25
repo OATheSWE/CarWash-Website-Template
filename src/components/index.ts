@@ -2,6 +2,7 @@
 
 export {default as Btn} from './button';
 export {default as InstagramIcon} from './InstagramIcon';
+export {default as SuccessModal} from './SuccessModal';
 export * from './NavBar';
 export * from './Footer';
 export * from './Header';

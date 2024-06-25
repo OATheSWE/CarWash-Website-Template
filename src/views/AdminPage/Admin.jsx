@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { styles } from "@/src/data";
 import {
   Select,
@@ -7,68 +8,158 @@ import {
   TextInput,
   Title,
 } from "@mantine/core";
+import axios from "axios";
 import { useForm } from "@mantine/form";
-import React from "react";
+import { api } from "@/src/api";
 
 export default function Admin() {
   const form = useForm({
     initialValues: {
       search: "",
-      filter: "",
+      filter: "Alltime",
     },
   });
 
-  const appointments = [
-    {
-      Id: "e0a3d8a281e9b87959a62024-06-18",
-      amount: "699 Kr",
-      date: "2024-08-13 10:00",
-      customer: "nvnn bnbnb",
-      weight: "1501 - 1750 KG",
-      plan: "Good CARE",
-      payment: "stripe",
-    },
-  ];
+  const [appointments, setAppointments] = useState([]);
+  const [filteredAppointments, setFilteredAppointments] = useState([]);
 
-  const rows = appointments.map((appointment) => (
-    <Table.Tr key={appointment.Id}>
-      <Table.Td>{appointment.Id}</Table.Td>
-      <Table.Td>{appointment.amount}</Table.Td>
-      <Table.Td>{appointment.date}</Table.Td>
-      <Table.Td>{appointment.customer}</Table.Td>
-      <Table.Td>{appointment.weight}</Table.Td>
-      <Table.Td>{appointment.plan}</Table.Td>
-      <Table.Td>{appointment.payment}</Table.Td>
+  useEffect(() => {
+    fetchAppointments();
+  }, []);
+
+  useEffect(() => {
+    filterAppointments();
+  }, [appointments, form.values.search, form.values.filter]);
+
+  const fetchAppointments = async () => {
+    try {
+      const response = await axios.get(api.fetchApps);
+      setAppointments(response.data);
+    } catch (error) {
+      console.error("Error fetching appointments:", error);
+    }
+  };
+
+  const filterAppointments = () => {
+    const searchText = form.values.search.toLowerCase();
+    const filter = form.values.filter;
+    const currentDate = new Date().toLocaleDateString(); // Get current date
+
+    const filtered = appointments.filter((appointment) => {
+      const appointmentDate = new Date(appointment.appointment_date).toLocaleDateString(); // Convert appointment date to string
+
+      // Filter by search text in any field
+      if (
+        searchText &&
+        !(
+          appointment.customer_name.toLowerCase().includes(searchText) ||
+          appointment.customer_email.toLowerCase().includes(searchText) ||
+          appointment.customer_phone.toLowerCase().includes(searchText) ||
+          appointment.vehicle_weight.toLowerCase().includes(searchText) ||
+          appointment.wash_plan.toLowerCase().includes(searchText) ||
+          appointment.vehicle_model.toLowerCase().includes(searchText)
+        )
+      ) {
+        return false;
+      }
+
+      // Filter by date if Today filter is selected
+      if (filter === "Today") {
+        const currentDate = new Date().toLocaleDateString(); // Get current date
+        const appointmentDate = new Date(
+          appointment.appointment_date
+        ).toLocaleDateString(); // Convert appointment date to string
+
+        if (currentDate !== appointmentDate) {
+          return false;
+        }
+      }
+
+      return true;
+    });
+
+    setFilteredAppointments(filtered);
+  };
+
+  const formatDateTime = (dateTimeString) => {
+    const date = new Date(dateTimeString);
+    const options = {
+      year: "numeric",
+      month: "2-digit",
+      day: "2-digit",
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: true,
+    };
+    return date.toLocaleString("en-GB", options);
+  };
+
+  const rows = filteredAppointments.map((appointment) => (
+    <Table.Tr key={appointment.id}>
+      <Table.Td>
+        {appointment.id}
+        <br />
+        {formatDateTime(appointment.appointment_date)}
+      </Table.Td>
+      <Table.Td>
+        {appointment.customer_name}
+        <br />
+        {appointment.customer_email}
+        <br />
+        {appointment.customer_phone}
+      </Table.Td>
+      <Table.Td>
+        {appointment.vehicle_weight}
+        <br />
+        {appointment.vehicle_model}
+      </Table.Td>
+      <Table.Td>{appointment.wash_plan}</Table.Td>
     </Table.Tr>
   ));
 
-  const rows2 = appointments.map((appointment) => (
-    <Table.Tr key={appointment.Id}>
-      <Table.Td>{appointment.Id}</Table.Td>
-      <Table.Td>{appointment.amount}</Table.Td>
-      <Table.Td>{appointment.date}</Table.Td>
+  const rows2 = filteredAppointments.map((appointment) => (
+    <Table.Tr key={appointment.id}>
+      <Table.Td>
+        {appointment.id}
+        <br />
+        {formatDateTime(appointment.appointment_date)}
+      </Table.Td>
+      <Table.Td>
+        {appointment.customer_name}
+        <br />
+        {appointment.customer_email}
+        <br />
+        {appointment.customer_phone}
+      </Table.Td>
+      <Table.Td>
+        {appointment.vehicle_weight}
+        <br />
+        {appointment.vehicle_model}
+      </Table.Td>
     </Table.Tr>
   ));
 
-  const rows3 = appointments.map((appointment) => (
-    <Table.Tr key={appointment.Id}>
-      <Table.Td>{appointment.Id}</Table.Td>
+  const rows3 = filteredAppointments.map((appointment) => (
+    <Table.Tr key={appointment.id}>
+      <Table.Td>
+        {appointment.id}
+        <br />
+        {formatDateTime(appointment.appointment_date)}
+      </Table.Td>
     </Table.Tr>
   ));
 
   return (
-    <div className={`${styles.body} pt-[150px] bg-[#101924] h-full w-full`}>
+    <div className={`${styles.body} py-[150px] bg-[#101924] h-full w-full`}>
       <Title order={3} c={`white`}>
         Dashboard
       </Title>
-      <div className="flex sm:space-x-10 mt-7 max-sm:flex-col max-sm:space-y-6">
-        <div className="bg-[#141c26] sm:max-w-[330px] w-full p-6 shadow-xl rounded-xl">
-          <Text className="text-white">Total Amount</Text>
-          <Text className="text-white text-[32px]">$ 1,772</Text>
-        </div>
-        <div className="bg-[#141c26] sm:max-w-[330px] w-full p-6 shadow-xl rounded-xl">
+      <div className="w-full mt-7">
+        <div className="bg-[#141c26] w-full p-6 shadow-xl rounded-xl">
           <Text className="text-white">All Appointments</Text>
-          <Text className="text-white text-[32px]">13</Text>
+          <Text className="text-white text-[32px]">
+            {appointments.length}  
+          </Text>
         </div>
       </div>
       <Title order={3} c={`white`} mt={`xl`}>
@@ -98,35 +189,32 @@ export default function Admin() {
           />
         </SimpleGrid>
         <div className="mt-10 max-lg:hidden">
-          <Table highlightOnHover withColumnBorders withTableBorder c={`white`}>
+          <Table withColumnBorders withTableBorder c={`white`}>
             <Table.Thead>
               <Table.Tr>
                 <Table.Th>Id</Table.Th>
-                <Table.Th>Amount</Table.Th>
-                <Table.Th>Date</Table.Th>
                 <Table.Th>Customer</Table.Th>
-                <Table.Th>Weight</Table.Th>
+                <Table.Th>Vehicle</Table.Th>
                 <Table.Th>Plan</Table.Th>
-                <Table.Th>Payment</Table.Th>
               </Table.Tr>
             </Table.Thead>
             <Table.Tbody>{rows}</Table.Tbody>
           </Table>
         </div>
         <div className="mt-10 hidden lg:hidden sm:block ">
-          <Table highlightOnHover withColumnBorders withTableBorder c={`white`}>
+          <Table withColumnBorders withTableBorder c={`white`}>
             <Table.Thead>
               <Table.Tr>
                 <Table.Th>Id</Table.Th>
-                <Table.Th>Amount</Table.Th>
-                <Table.Th>Date</Table.Th>
+                <Table.Th>Customer</Table.Th>
+                <Table.Th>Vehicle</Table.Th>
               </Table.Tr>
             </Table.Thead>
             <Table.Tbody>{rows2}</Table.Tbody>
           </Table>
         </div>
         <div className="mt-10 sm:hidden">
-          <Table highlightOnHover withColumnBorders withTableBorder c={`white`}>
+          <Table withColumnBorders withTableBorder c={`white`}>
             <Table.Thead>
               <Table.Tr>
                 <Table.Th>Id</Table.Th>
