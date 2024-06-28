@@ -37,10 +37,14 @@ export default function Header() {
     >
       <div className={classes.inner}>
         <div className={classes.content}>
-          <video autoPlay muted loop className={classes.video}>
-            <source src={ImageCollection.cover} type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
+          <iframe
+            src={ImageCollection.cover}
+            className={`absolute top-0 left-0 w-full h-full object-cover`}
+            title="Cover Video"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowFullScreen = {true}
+            aria-label="Cover Video"
+          ></iframe>
           <animated.div style={leftAnimation}>
             <div className="bg-[#FFFFFF1A] p-1 max-sm:px-3 rounded-full max-w-[400px] w-full flex space-x-3 justify-center items-center mb-6">
               <div className="max-sm:w-[15px] sm:w-[10px] h-[10px] rounded-full bg-white block"></div>

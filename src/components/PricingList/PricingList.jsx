@@ -48,11 +48,7 @@ const PricingList = () => {
   });
 
   const pricingA = trail.map((style, index) => (
-    <animated.div
-      key={index}
-      style={style}
-      className={`max-md:mx-auto`}
-    >
+    <animated.div key={index} style={style} className={`max-md:mx-auto`}>
       <div className="max-w-[360px] h-full w-full bg-white p-7 rounded-xl">
         <Title order={2}>{prices[index].packageName}</Title>
         <Text size="lg">{prices[index].duration}</Text>
@@ -79,7 +75,7 @@ const PricingList = () => {
       </div>
     </animated.div>
   ));
-  
+
   return (
     <section className={`${styles.body} bg-[#f8f8f8] py-[120px]`}>
       <animated.div ref={ref} style={slideUpAnimation1}>

@@ -1,75 +1,64 @@
 .root {
-    background-size: cover;
-    background-image: linear-gradient(rgba(0, 0, 0, .5), rgba(0, 0, 0, .5));;
-    padding-top: calc(var(--mantine-spacing-xl) * 3);
-    padding-bottom: calc(var(--mantine-spacing-xl) * 3);
-  }
-  
-  .inner {
-    display: flex;
-    justify-content: space-between;
-  
-    @media (max-width: $mantine-breakpoint-md) {
-      flex-direction: column;
-    }
-  }
-  
-  .image {
-    @media (max-width: $mantine-breakpoint-md) {
-      display: none;
-    }
-  }
-  
-  .content {
-    padding-top: calc(var(--mantine-spacing-xl) * 4);
-    padding-bottom: calc(var(--mantine-spacing-xl) * 2);
-    margin-right: calc(var(--mantine-spacing-xl) * 3);
-  
-    @media (max-width: $mantine-breakpoint-md) {
-      margin-right: 0;
-    }
-  }
-  
-  .title {
-    color: var(--mantine-color-white);
-    font-weight: 900;
-    line-height: 1.05;
-    font-size: rem(62px);
+  background-size: cover;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5));
+  padding-top: calc(var(--mantine-spacing-xl) * 3);
+  padding-bottom: calc(var(--mantine-spacing-xl) * 3);
+}
 
-  
-    @media (max-width: $mantine-breakpoint-md) {
-      max-width: 100%;
-      font-size: rem(45px);
-      line-height: 1.15;
-    }
-  }
-  
-  .description {
-    color: var(--mantine-color-white);
-    opacity: 0.75;
-    max-width: rem(500px);
-  
-    @media (max-width: $mantine-breakpoint-md) {
-      max-width: 100%;
-    }
-  }
-  
-  .control {
-    padding-left: rem(50px);
-    padding-right: rem(50px);
-    font-size: rem(22px);
-  
-    @media (max-width: $mantine-breakpoint-md) {
-      width: 100%;
-    }
-  }
+.inner {
+  display: flex;
+  justify-content: space-between;
 
-  .video {
-    position: absolute;
-    top: 0;
-    left: 0;
+  @media (max-width: $mantine-breakpoint-md) {
+    flex-direction: column;
+  }
+}
+
+.image {
+  @media (max-width: $mantine-breakpoint-md) {
+    display: none;
+  }
+}
+
+.content {
+  padding-top: calc(var(--mantine-spacing-xl) * 4);
+  padding-bottom: calc(var(--mantine-spacing-xl) * 2);
+  margin-right: calc(var(--mantine-spacing-xl) * 3);
+
+  @media (max-width: $mantine-breakpoint-md) {
+    margin-right: 0;
+  }
+}
+
+.title {
+  color: var(--mantine-color-white);
+  font-weight: 900;
+  line-height: 1.05;
+  font-size: rem(62px);
+
+  @media (max-width: $mantine-breakpoint-md) {
+    max-width: 100%;
+    font-size: rem(45px);
+    line-height: 1.15;
+  }
+}
+
+.description {
+  color: var(--mantine-color-white);
+  opacity: 0.75;
+  max-width: rem(500px);
+
+  @media (max-width: $mantine-breakpoint-md) {
+    max-width: 100%;
+  }
+}
+
+.control {
+  padding-left: rem(50px);
+  padding-right: rem(50px);
+  font-size: rem(22px);
+
+  @media (max-width: $mantine-breakpoint-md) {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: -1; /* Ensure the video is behind other content */
   }
+}

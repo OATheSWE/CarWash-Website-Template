@@ -21,12 +21,12 @@ function ContactIcon({ icon, title, description, ...others }) {
 const MOCKDATA = [
   {
     title: "Email",
-    description: "info@carkiss.dk",
+    description: "info@car-kiss.com",
     icon: <IconImports.Email size={21} color={`#152F60`} />,
   },
   {
     title: "Phone",
-    description: "+1 +45 18 08 18 82",
+    description: "+45 18 08 18 82",
     icon: <IconImports.Phone size={21} color={`#152F60`} />,
   },
   {

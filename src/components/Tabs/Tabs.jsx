@@ -8,7 +8,6 @@ import { ImageCollection } from "../../../assets";
 import classes from "./Tabs.module.css";
 
 export default function TabsAbout() {
-
   const [ref, inView] = useInView({
     threshold: 0.4,
     triggerOnce: true,
@@ -32,40 +31,57 @@ export default function TabsAbout() {
   });
 
   return (
-    <section ref={ref} className={`w-full pt-[80px] ${styles.body}`}>
-      <Grid gutter={90} className={`font-sans`}>
+    <section
+      ref={ref}
+      className={`w-full pt-[80px] ${styles.body}`}
+      role="region"
+      aria-labelledby="tabs-section"
+    >
+      <Grid gutter={90} className={`font-sans`} role="presentation">
         <Grid.Col span={{ base: 12, md: 6 }} className="">
-        <animated.div
+          <animated.div
             style={rightColAnimation}
             className="flex items-stretch max-lg:mx-auto h-full"
           >
-            <video
-              autoPlay
-              muted
-              loop
-              className={`w-full h-full object-cover rounded-xl`}
-            >
-              <source src={ImageCollection.aboutVideo} type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
+            <iframe
+              src={ImageCollection.aboutVideo}
+              className="w-full h-[300px] object-cover rounded-xl"
+              title="About Video"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+              allowFullScreen
+              aria-label="About Video"
+            ></iframe>
           </animated.div>
-          
         </Grid.Col>
         <Grid.Col span={{ base: 12, md: 6 }}>
-        <animated.div style={leftColAnimation} className={``}>
+          <animated.div style={leftColAnimation} className="">
             <Tabs
               variant="pills"
               defaultValue="sets"
               classNames={classes}
+              aria-label="About Tabs"
             >
-              <Tabs.List grow>
+              <Tabs.List grow role="tablist">
                 {tabsD.map((tab, index) => (
-                  <Tabs.Tab value={tab.value} key={index}>{tab.text}</Tabs.Tab>
+                  <Tabs.Tab
+                    value={tab.value}
+                    key={index}
+                    role="tab"
+                    aria-selected={tab.value === "sets" ? "true" : "false"}
+                  >
+                    {tab.text}
+                  </Tabs.Tab>
                 ))}
               </Tabs.List>
 
               {tabsD.map((tab, index) => (
-                <Tabs.Panel value={tab.value} key={index}>
+                <Tabs.Panel
+                  value={tab.value}
+                  key={index}
+                  id={`tab-${tab.value}`}
+                  aria-labelledby={`tab-${tab.value}`}
+                  role="tabpanel"
+                >
                   <Title className={`text-text mt-5`} order={1}>
                     {tab.title}
                   </Title>

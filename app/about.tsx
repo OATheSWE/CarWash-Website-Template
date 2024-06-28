@@ -16,7 +16,6 @@ const about = () => {
 
   return (
     <animated.div style={slideInStyles} className="overflow-hidden pb-[100px]">
-      
       <Header2
         img={ImageCollection.aboutHeader}
         topText={`about`}

@@ -66,10 +66,10 @@ export default function Contact() {
 
     emailjs
       .sendForm(
-        "service_yk7f35d",
-        "template_ef9jeju",
+        "service_rjeoazd",
+        "template_otx934w",
         formD.current,
-        "NEU4CiheQdvnO1sPi",
+        "rF1fQvhab4meehQ_0",
         form.values.email 
       )
       .then(

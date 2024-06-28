@@ -63,12 +63,19 @@ const BookPage = () => {
 
   return (
     <>
-      <div className="bg-primary h-[90px] w-full"></div>
+      {/* SEO Improvements: */}
+      <title>Book Your Service - YourSiteName</title>
+      <meta name="description" content="Book your vehicle service online. Select your vehicle weight, choose a wash package, and provide contact information." />
+      
+      {/* Accessibility and Structure: */}
+      <div role="banner" className="bg-primary h-[90px] w-full"></div>
       <animated.div
         style={slideInStyles}
         className={`${styles.body} bg-[#f8f8f8] overflow-hidden w-full h-full`}
+        role="main"
+        aria-labelledby="book-page-heading"
       >
-        <section className="bg-white w-full h-full px-8 pt-[50px]">
+        <section className="bg-white w-full h-full px-8 pt-[50px]" aria-labelledby="book-page-section-heading">
           <Image
             src={ImageCollection.logo2}
             alt="Logo 2"
@@ -95,7 +102,7 @@ const BookPage = () => {
                 <span className="text-[18px]">/3</span>
               </div>
               <div className="flex flex-col">
-                <Title order={3}>Vehicle weight</Title>
+                <Title id="book-page-section-heading" order={3}>Vehicle weight</Title>
                 <Text className="text-[20px] font-thin">
                   Select vehicle type and weight.
                 </Text>
@@ -120,6 +127,7 @@ const BookPage = () => {
               size={`md`}
             />
           </div>
+
           <div className="my-[60px]">
             <div className="flex sm:space-x-5 items-center max-sm:flex-col max-sm:items-start max-sm:space-y-5">
               <div className="flex justify-center items-center bg-primary rounded-full w-[70px] h-[70px] text-white">
@@ -137,10 +145,13 @@ const BookPage = () => {
               cols={{ base: 1, sm: 2 }}
               spacing={`2.5rem`}
               className={`mt-10`}
+              role="list"
+              aria-labelledby="wash-packages-heading"
             >
               {pricingPlans}
             </SimpleGrid>
           </div>
+
           <div className="my-[60px]">
             <div className="flex sm:space-x-5 items-center max-sm:flex-col max-sm:items-start max-sm:space-y-5">
               <div className="flex justify-center items-center bg-primary rounded-full w-[70px] h-[70px] text-white">
