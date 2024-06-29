@@ -1,11 +1,11 @@
 
 
-const login = "http://localhost:8000/login.php";
-const book = "http://localhost:8000/bookAppointment.php";
-const fetchApps = "http://localhost:8000/fetchAppointments.php";
-const fetchAllBlogs = "http://localhost:8000/fetchAllBlogs.php";
-const fetchBlog = "http://localhost:8000/fetchBlog.php";
-const uploadBlog = "http://localhost:8000/uploadBlog.php";
+const login = "php/login.php";
+const book = "php/bookAppointment.php";
+const fetchApps = "php/fetchAppointments.php";
+const fetchAllBlogs = "php/fetchAllBlogs.php";
+const fetchBlog = "php/fetchBlog.php";
+const uploadBlog = "php/uploadBlog.php";
 
 
 

@@ -4,6 +4,7 @@ import { styles } from "@/src/data";
 import { Group, TextInput, Title } from "@mantine/core";
 import { useForm } from "@mantine/form";
 import axios from "axios";
+import { router } from "expo-router";
 import { useRef, useState } from "react";
 
 const Login = () => {
@@ -40,7 +41,7 @@ const Login = () => {
         localStorage.setItem("aya", "Logged In");
         handleOpenSuccessModal(response.data.message);
         setTimeout(() => {
-          window.location.reload();
+          router.replace("/admin");
         }, 2500);
       } else {
         handleOpenSuccessModal(response.data.message);

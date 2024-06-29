@@ -3,7 +3,7 @@ import { Group, Box, Burger, Drawer, ScrollArea, Image } from "@mantine/core";
 import classes from "./NavBar.module.css";
 import "./Navbar.css";
 import { useDisclosure } from "@mantine/hooks";
-import { Link } from "expo-router";
+import { Link, router } from "expo-router";
 import { styles } from "@/src/data";
 import { ImageCollection } from "@/assets";
 import ConfirmModal from "../ConfirmModal";
@@ -29,7 +29,7 @@ export default function Aside() {
   const handleConfirmLogout = () => {
     localStorage.removeItem("aya");
     setTimeout(() => {
-      window.location.reload();
+      router.replace("/admin");  
     }, 2500);
   };
 
