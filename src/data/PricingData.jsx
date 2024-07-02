@@ -1,6 +1,6 @@
 export const prices = [
     {
-      packageName: "Fast Kiss(From $395)",
+      packageName: "Fast Kiss(From 395,-)",
       duration: "30 mins",
       services: [
         "Car was by hand",
@@ -11,7 +11,7 @@ export const prices = [
       ]
     },
     {
-      packageName: "Well Kiss(From $895)",
+      packageName: "Well Kiss(From 895,-)",
       duration: "90 mins",
       services: [
         "Everything in Fast Kiss-Package",
@@ -22,7 +22,7 @@ export const prices = [
       ]
     },
     {
-      packageName: "Super Kiss(From $1795)",
+      packageName: "Super Kiss(From 1795,-)",
       duration: "3hrs",
       services: [
         "Everything in Fast Kiss and Well Kiss packages",

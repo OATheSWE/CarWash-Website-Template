@@ -18,6 +18,7 @@ const service7 = Asset.fromModule(require('./service7.webp')).uri;
 const service8 = Asset.fromModule(require('./service8.webp')).uri;
 const service9 = Asset.fromModule(require('./service9.webp')).uri;
 const aboutHeader = Asset.fromModule(require('./about-header.webp')).uri;
+const header = Asset.fromModule(require('./header.webp')).uri;
 const serviceHeader = Asset.fromModule(require('./servicesHeader.webp')).uri;
 const pricingHeader = Asset.fromModule(require('./pricingHeader.webp')).uri;
 const contactHeader = Asset.fromModule(require('./contactHeader.webp')).uri;
@@ -50,7 +51,8 @@ const ImageCollection = {
    about3,
    aboutVideo,
    pricingHeader,
-   contactHeader
+   contactHeader,
+   header
 }
 
 export { ImageCollection };
